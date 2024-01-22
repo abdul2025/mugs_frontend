@@ -31,7 +31,7 @@ export class LoginServiceService {
       // You can add other headers if needed
     });
 
-    const url = `${this.config.backend_based_local_api}/login`
+    const url = `${this.config.backend_based_local_api}/auth/login`
     return this.http.post<any>(url, data, {headers})
   }
 
@@ -44,7 +44,7 @@ export class LoginServiceService {
       // You can add other headers if needed
     });
 
-    const url = `${this.config.backend_based_local_api}/logout`
+    const url = `${this.config.backend_based_local_api}/auth/logout`
     return this.http.post<any>(url, {headers})
   }
 }

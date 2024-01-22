@@ -1,0 +1,76 @@
+<div class="container-fluid custom-center-container">
+  <div class="container" >
+    <h2>Login</h2>
+    <form [formGroup]="logingForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        <br>
+        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email"
+        formControlName="email"/>
+        <span
+          *ngIf="
+          logingForm.get('email')?.hasError('required') &&
+          (logingForm.get('email')?.dirty ||
+          logingForm.get('email')?.touched)
+          "
+          class="error"
+        >Field is Required</span>
+        <span
+          *ngIf="
+          logingForm.get('email')?.invalid &&
+          logingForm.get('email')?.hasError('required') == false &&
+          (logingForm.get('email')?.dirty ||
+          logingForm.get('email')?.touched)
+          "
+          class="error"
+        >Email Formate Not Right</span>
+
+      </div>
+      <div class="form-group">
+        <input type="password"  class="form-control" id="Password" placeholder="Password"
+        formControlName="password"
+        >
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('required') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Field is Required</span>
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('minlength') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Password length must be 8 or more</span>
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('maxlength') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Password length must be less than 20</span>
+      </div>
+      <button type="submit" [disabled]="logingForm.invalid" class="btn">Log in</button>
+    </form>
+
+
+    <div class="resetPass">
+
+      <a href="http://">Reset Password</a>
+    </div>
+    <div class="do-not-have-account">
+
+      <span>
+          Don't have account an
+        <a href="/registration">Create One</a>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div class="container-fluid custom-center-container">
+  <div class="container" >
+    <h2>Join us</h2>
+    <br>
+    <form [formGroup]="logingForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email"
+        formControlName="email"/>
+        <span
+          *ngIf="
+          logingForm.get('email')?.hasError('required') &&
+          (logingForm.get('email')?.dirty ||
+          logingForm.get('email')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+        <span
+          *ngIf="
+          logingForm.get('email')?.invalid &&
+          logingForm.get('email')?.hasError('required') == false &&
+          (logingForm.get('email')?.dirty ||
+          logingForm.get('email')?.touched)
+          "
+          class="error"
+        >Email formate not correct.</span>
+        <p id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</p>
+
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="first_name" placeholder="First name"
+        formControlName="first_name"/>
+        <span
+          *ngIf="
+          logingForm.get('first_name')?.hasError('required') &&
+          (logingForm.get('first_name')?.dirty ||
+          logingForm.get('first_name')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+        <span
+          *ngIf="
+          logingForm.get('first_name')?.hasError('minlength') &&
+          (logingForm.get('first_name')?.dirty ||
+          logingForm.get('first_name')?.touched)
+          "
+          class="error"
+        >length must be 3 or more.</span>
+
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="last_name" placeholder="Last name"
+        formControlName="last_name"/>
+        <span
+          *ngIf="
+          logingForm.get('last_name')?.hasError('required') &&
+          (logingForm.get('last_name')?.dirty ||
+          logingForm.get('last_name')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+        <span
+          *ngIf="
+          logingForm.get('last_name')?.hasError('minlength') &&
+          (logingForm.get('last_name')?.dirty ||
+          logingForm.get('last_name')?.touched)
+          "
+          class="error"
+        >length must be 3 or more.</span>
+
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="password"  class="form-control" id="Password" placeholder="Password"
+        formControlName="password"
+        >
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('required') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('minlength') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Password length must be 8 or more.</span>
+        <span
+          *ngIf="
+          logingForm.get('password')?.hasError('maxlength') &&
+          (logingForm.get('password')?.dirty ||
+          logingForm.get('password')?.touched)
+          "
+          class="error"
+        >Password length must be less than 20.</span>
+      </div>
+      <div class="form-group">
+        <input type="password"  class="form-control" id="confirm_password" placeholder="Confirm password"
+        formControlName="confirm_password"
+        >
+        <span
+          *ngIf="
+          logingForm.get('confirm_password')?.hasError('required') &&
+          (logingForm.get('confirm_password')?.dirty ||
+          logingForm.get('confirm_password')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+        <span
+          *ngIf="
+          logingForm.get('confirm_password')?.hasError('minlength') &&
+          (logingForm.get('confirm_password')?.dirty ||
+          logingForm.get('confirm_password')?.touched)
+          "
+          class="error"
+        >Password length must be 8 or more.</span>
+        <span
+          *ngIf="
+          logingForm.get('confirm_password')?.hasError('maxlength') &&
+          (logingForm.get('confirm_password')?.dirty ||
+          logingForm.get('confirm_password')?.touched)
+          "
+          class="error"
+        >Password length must be less than 20.</span>
+      </div>
+      <button type="submit" [disabled]="logingForm.invalid" class="btn">Join</button>
+    </form>
+    <br>
+    <div class="do-not-have-account">
+    <br>
+      <span>
+          Already have an account
+        <a href="/login">Log in</a>
+      </span>
+    </div>
+
+  </div>
+</div>

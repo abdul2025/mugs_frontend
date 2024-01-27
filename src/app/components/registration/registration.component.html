@@ -1,25 +1,30 @@
 <div class="container-fluid custom-center-container">
   <div class="container" >
     <h2>Join us</h2>
+
     <br>
-    <form [formGroup]="logingForm" (ngSubmit)="onSubmit()">
+    <div style="text-align: center;" *ngIf="errorMessage">
+
+      <p class="error"  cas>{{ errorMessage }}</p>
+    </div>
+    <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email"
         formControlName="email"/>
         <span
           *ngIf="
-          logingForm.get('email')?.hasError('required') &&
-          (logingForm.get('email')?.dirty ||
-          logingForm.get('email')?.touched)
+          registerationForm.get('email')?.hasError('required') &&
+          (registerationForm.get('email')?.dirty ||
+          registerationForm.get('email')?.touched)
           "
           class="error"
         >Field is Required.</span>
         <span
           *ngIf="
-          logingForm.get('email')?.invalid &&
-          logingForm.get('email')?.hasError('required') == false &&
-          (logingForm.get('email')?.dirty ||
-          logingForm.get('email')?.touched)
+          registerationForm.get('email')?.invalid &&
+          registerationForm.get('email')?.hasError('required') == false &&
+          (registerationForm.get('email')?.dirty ||
+          registerationForm.get('email')?.touched)
           "
           class="error"
         >Email formate not correct.</span>
@@ -31,17 +36,17 @@
         formControlName="first_name"/>
         <span
           *ngIf="
-          logingForm.get('first_name')?.hasError('required') &&
-          (logingForm.get('first_name')?.dirty ||
-          logingForm.get('first_name')?.touched)
+          registerationForm.get('first_name')?.hasError('required') &&
+          (registerationForm.get('first_name')?.dirty ||
+          registerationForm.get('first_name')?.touched)
           "
           class="error"
         >Field is Required.</span>
         <span
           *ngIf="
-          logingForm.get('first_name')?.hasError('minlength') &&
-          (logingForm.get('first_name')?.dirty ||
-          logingForm.get('first_name')?.touched)
+          registerationForm.get('first_name')?.hasError('minlength') &&
+          (registerationForm.get('first_name')?.dirty ||
+          registerationForm.get('first_name')?.touched)
           "
           class="error"
         >length must be 3 or more.</span>
@@ -52,21 +57,49 @@
         formControlName="last_name"/>
         <span
           *ngIf="
-          logingForm.get('last_name')?.hasError('required') &&
-          (logingForm.get('last_name')?.dirty ||
-          logingForm.get('last_name')?.touched)
+          registerationForm.get('last_name')?.hasError('required') &&
+          (registerationForm.get('last_name')?.dirty ||
+          registerationForm.get('last_name')?.touched)
           "
           class="error"
         >Field is Required.</span>
         <span
           *ngIf="
-          logingForm.get('last_name')?.hasError('minlength') &&
-          (logingForm.get('last_name')?.dirty ||
-          logingForm.get('last_name')?.touched)
+          registerationForm.get('last_name')?.hasError('minlength') &&
+          (registerationForm.get('last_name')?.dirty ||
+          registerationForm.get('last_name')?.touched)
           "
           class="error"
         >length must be 3 or more.</span>
 
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="date" class="form-control" id="dob" placeholder="dob"
+        formControlName="dob"/>
+        <span
+          *ngIf="
+          registerationForm.get('dob')?.hasError('required') &&
+          (registerationForm.get('dob')?.dirty ||
+          registerationForm.get('dob')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
+      </div>
+      <div class="form-group">
+        <select id="gender" class="form-select" aria-label="Default select example" formControlName="gender">
+          <option value="" disabled>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <span
+          *ngIf="
+          registerationForm.get('dob')?.hasError('required') &&
+          (registerationForm.get('dob')?.dirty ||
+          registerationForm.get('dob')?.touched)
+          "
+          class="error"
+        >Field is Required.</span>
       </div>
       <br>
       <div class="form-group">
@@ -75,25 +108,25 @@
         >
         <span
           *ngIf="
-          logingForm.get('password')?.hasError('required') &&
-          (logingForm.get('password')?.dirty ||
-          logingForm.get('password')?.touched)
+          registerationForm.get('password')?.hasError('required') &&
+          (registerationForm.get('password')?.dirty ||
+          registerationForm.get('password')?.touched)
           "
           class="error"
         >Field is Required.</span>
         <span
           *ngIf="
-          logingForm.get('password')?.hasError('minlength') &&
-          (logingForm.get('password')?.dirty ||
-          logingForm.get('password')?.touched)
+          registerationForm.get('password')?.hasError('minlength') &&
+          (registerationForm.get('password')?.dirty ||
+          registerationForm.get('password')?.touched)
           "
           class="error"
         >Password length must be 8 or more.</span>
         <span
           *ngIf="
-          logingForm.get('password')?.hasError('maxlength') &&
-          (logingForm.get('password')?.dirty ||
-          logingForm.get('password')?.touched)
+          registerationForm.get('password')?.hasError('maxlength') &&
+          (registerationForm.get('password')?.dirty ||
+          registerationForm.get('password')?.touched)
           "
           class="error"
         >Password length must be less than 20.</span>
@@ -104,30 +137,30 @@
         >
         <span
           *ngIf="
-          logingForm.get('confirm_password')?.hasError('required') &&
-          (logingForm.get('confirm_password')?.dirty ||
-          logingForm.get('confirm_password')?.touched)
+          registerationForm.get('confirm_password')?.hasError('required') &&
+          (registerationForm.get('confirm_password')?.dirty ||
+          registerationForm.get('confirm_password')?.touched)
           "
           class="error"
         >Field is Required.</span>
         <span
           *ngIf="
-          logingForm.get('confirm_password')?.hasError('minlength') &&
-          (logingForm.get('confirm_password')?.dirty ||
-          logingForm.get('confirm_password')?.touched)
+          registerationForm.get('confirm_password')?.hasError('minlength') &&
+          (registerationForm.get('confirm_password')?.dirty ||
+          registerationForm.get('confirm_password')?.touched)
           "
           class="error"
         >Password length must be 8 or more.</span>
         <span
           *ngIf="
-          logingForm.get('confirm_password')?.hasError('maxlength') &&
-          (logingForm.get('confirm_password')?.dirty ||
-          logingForm.get('confirm_password')?.touched)
+          registerationForm.get('confirm_password')?.hasError('maxlength') &&
+          (registerationForm.get('confirm_password')?.dirty ||
+          registerationForm.get('confirm_password')?.touched)
           "
           class="error"
         >Password length must be less than 20.</span>
       </div>
-      <button type="submit" [disabled]="logingForm.invalid" class="btn">Join</button>
+      <button type="submit" [disabled]="registerationForm.invalid" class="btn">Join</button>
     </form>
     <br>
     <div class="do-not-have-account">

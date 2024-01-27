@@ -47,19 +47,14 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         console.log('Post request Successful', response)
         // Route back to Home Page
-        this.router.navigate(['/']);
-
+        this.router.navigate(['/rooms']);
         // Perform login logic
         // After successful login, update the login status globally
         this.loginService.setLoggedInStatus(true);
-
       },
-
-
       error: (error) => {
         this.logingForm.reset();
         this.errorMessage = error.error.detail
-
         if (this.errorMessage === undefined){
           this.errorMessage = 'Server Error, Please try again later'
         }

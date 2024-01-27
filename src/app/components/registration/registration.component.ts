@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit{
 
 
-  logingForm!: FormGroup;
+  registerationForm!: FormGroup;
   errorMessage!: string;
+  ageBelowMinimum!: Boolean;
 
 
 
@@ -24,23 +25,21 @@ export class RegistrationComponent implements OnInit{
 
 
   ngOnInit() {
-    this.logingForm = this.fp.group({
+    this.registerationForm = this.fp.group({
       email: ['', [Validators.required, Validators.email]],
       first_name: ['', [Validators.required, Validators.minLength(3)]],
       last_name: ['', [Validators.required, Validators.minLength(3)]],
+      dob: [new Date(), [Validators.required]],
+      gender: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
       confirm_password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
     });
   }
 
   onSubmit(): void {
-    // Create API service for Authentication for :
-    // Login
-    // Join
-    // Reset Password
 
     "Create API service for Authentication"
-    this.regisService.postRegister(this.logingForm.value).subscribe({
+    this.regisService.postRegister(this.registerationForm.value).subscribe({
 
       next: (response) => {
         console.log('Post request Successful', response)
@@ -49,9 +48,10 @@ export class RegistrationComponent implements OnInit{
       },
 
       error: (error) => {
-        this.logingForm.reset();
-        this.errorMessage = error.error.detail
-        console.log(this.errorMessage)
+        this.registerationForm.reset();
+        if (error.error.error === undefined){
+          this.errorMessage= error.error.error.join(',')
+        }
 
         if (this.errorMessage === undefined){
           this.errorMessage = 'Server Error, Please try again later'
@@ -64,7 +64,7 @@ export class RegistrationComponent implements OnInit{
       }
 
     })
-    console.log('Submitted', this.logingForm.value, this.logingForm.valid);
+    console.log('Submitted', this.registerationForm.value, this.registerationForm.valid);
   }
 
 }
